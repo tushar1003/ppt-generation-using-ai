@@ -326,7 +326,7 @@ def add_slide_to_presentation(ppt_generator: PPTGenerator, slide_type: str, cont
 
 
 @api_view(['GET'])
-@permission_classes([])
+@permission_classes([IsAuthenticated])
 def health_check(request):
     """
     API health check endpoint with system status
