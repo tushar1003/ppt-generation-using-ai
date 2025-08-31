@@ -27,16 +27,9 @@ from .exceptions import (
     validate_content_array,
     validate_presentation_limits
 )
-from .rate_limiting import (
-    presentation_rate_limit,
-    api_rate_limit,
-    cache_presentation_result,
-    PresentationCache
-)
+from django_ratelimit.decorators import ratelimit
 
 logger = logging.getLogger(__name__)
-
-from django_ratelimit.decorators import ratelimit
 
 @ratelimit(key='ip', rate='3/m', method='POST', block=True)
 @api_view(['POST'])
@@ -384,7 +377,7 @@ def health_check(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+@permission_classes([])
 def get_rate_limit_status(request):
     """
     Get current rate limit status for the user

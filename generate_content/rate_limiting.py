@@ -246,13 +246,13 @@ def cache_presentation_result(timeout: int = 3600):
 # Rate limiting decorators for different endpoints
 presentation_rate_limit = enhanced_ratelimit(
     group='presentation_generation',
-    rate='10/h',
+    rate='3/m',
     method=['POST']
 )
 
 api_rate_limit = enhanced_ratelimit(
     group='api_calls',
-    rate='100/h',
+    rate='10/m',
     method=['GET', 'POST']
 )
 
